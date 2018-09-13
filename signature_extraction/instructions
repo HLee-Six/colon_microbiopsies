@@ -1,0 +1,5 @@
+For each of subs, indels, or dbses:
+1) Run a number of hdp chains. e.g. for single base substitutions, run hdp_sbs.R eight times, generating 8 RData files as output.
+2) Average over chains and extract signatures. An example script for the single base substitions is provided in that directory: hdp_extract_signature_results.R
+3) Compare hdp signature results against PCAWG reference signatures. Break down into PCAWG constituents by EM according to criteria detailed in the script. An example script is provided for single base subsitutions in that directory: SBS_EM_to_share_out_sigs.R
+
