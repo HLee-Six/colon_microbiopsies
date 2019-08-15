@@ -41,26 +41,4 @@ biopsy_list$largest_distance <- ifelse(biopsy_list$largest_y_distance>=biopsy_li
 write.table(biopsy_list, file=paste(output_dir, "biopsy_data_combined.txt", sep=""), row.names = F, quote = F)
 
 
-## Split the biopsy_list into 10 parts such that each part has approx the same sum(largest_distance)
-## was playing around with this to parallelize more but all code after this point can actually be ignored.
-total <- sum(biopsy_list$largest_distance)
-stub <- round(total/10)
-sub_sum <- 0
-j <- 1
-count <- 1
-for( i in 1:nrow(biopsy_list)) {
-  if(sub_sum>stub) {
-    write.table(biopsy_list[c(j:i),], file=paste(output_dir, "biopsy_data_", count, ".txt", sep=""), row.names = F, quote = F)
-    sub_sum <- 0
-    count <- count +1
-    j <- i+1
-  }
-  sub_sum <- sub_sum + biopsy_list$largest_distance[i]
-
-  if(i==nrow(biopsy_list)) {
-    write.table(biopsy_list[c(j:i),], file=paste(output_dir, "biopsy_data_", count, ".txt", sep=""), row.names = F, quote = F)
-  }
-}
-
-
 

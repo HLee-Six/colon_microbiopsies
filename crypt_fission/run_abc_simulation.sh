@@ -34,13 +34,13 @@ nrSimulations=$( wc -l ${crypt_fission_rate_list} | awk '{print $1}' )
 
 if [[ "$q" == "long" ]]; then
     ## Only allows 7000 jobs running at a time.
-    bsub -J "crypt_fission_abc[1-${nrSimulations}]%7000" -q long -M500 -R'span[hosts=1] select[mem>500] rusage[mem=500]' \
+    bsub -J "crypt_fission_abc[1-${nrSimulations}]%7000" -q long -M1600 -R'span[hosts=1] select[mem>1600] rusage[mem=1600]' \
     -e ${clusterOutput}crypt_fission_abc_errors.%J.%I  -o ${clusterOutput}crypt_fission_abc_output.%J.%I  \
     bash ${script_dir}run_abc_simulation_worker.sh ${script_dir}abc_simulation_worker.r \
     ${crypt_fission_rate_list} ${biopsy_list} ${tree_dir} ${grid_dir} ${event_times_dir}
 else
     ## Only allows 7000 jobs running at a time.
-    bsub -J "crypt_fission_abc[1-${nrSimulations}]%7000" -q normal -M5000 -R'span[hosts=1] select[mem>5000] rusage[mem=5000]' \
+    bsub -J "crypt_fission_abc[1-${nrSimulations}]%7000" -q normal -M1600 -R'span[hosts=1] select[mem>1600] rusage[mem=1600]' \
     -e ${clusterOutput}crypt_fission_abc_errors.%J.%I  -o ${clusterOutput}crypt_fission_abc_output.%J.%I  \
     bash ${script_dir}run_abc_simulation_worker.sh ${script_dir}abc_simulation_worker.r \
     ${crypt_fission_rate_list} ${biopsy_list} ${tree_dir} ${grid_dir} ${event_times_dir}

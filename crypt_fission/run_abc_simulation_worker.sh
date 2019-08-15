@@ -27,14 +27,14 @@ fi
 
 mkdir -p ${grid_dir}sim${simulation_nr}
 
-echo "/software/R-3.4.0/bin/Rscript ${script} ${crypt_fission_rate} ${simulation_nr} ${biopsy_list} ${tree_dir} ${grid_dir} ${event_times_dir}"
-/software/R-3.4.0/bin/Rscript ${script} ${crypt_fission_rate} ${simulation_nr} ${biopsy_list} ${tree_dir} ${grid_dir}sim${simulation_nr}/ ${event_times_dir}
+echo "/software/R-3.5.3/bin/Rscript ${script} ${crypt_fission_rate} ${simulation_nr} ${biopsy_list} ${tree_dir} ${grid_dir} ${event_times_dir}"
+/software/R-3.5.3/bin/Rscript ${script} ${crypt_fission_rate} ${simulation_nr} ${biopsy_list} ${tree_dir} ${grid_dir}sim${simulation_nr}/ ${event_times_dir}
 
 #tar -czf ${grid_dir}sim${simulation_nr}.tar  --directory=${grid_dir}sim${simulation_nr}/ ${grid_dir}sim${simulation_nr}/
-tar -cvf sim${simulation_nr}.tar sim${simulation_nr}/
-gzip ${grid_dir}sim${simulation_nr}.tar
-rm -r ${grid_dir}sim${simulation_nr}/
-rm -f ${grid_dir}sim${simulation_nr}.tar
+#tar -cvf sim${simulation_nr}.tar sim${simulation_nr}/
+#gzip ${grid_dir}sim${simulation_nr}.tar
+#rm -r ${grid_dir}sim${simulation_nr}/
+#rm -f ${grid_dir}sim${simulation_nr}.tar
 
 cd ${rundir}
 

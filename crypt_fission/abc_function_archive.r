@@ -7,11 +7,15 @@
 
 if(file.exists("/nfs/users/nfs_s/so11/phd/doIexist")) {
   ## Script is running on the farm
-  lib_location="/lustre/scratch119/humgen/teams/anderson/users/so11/somatic_ibd_p1/ABC/R_packages/"
+  lib_location="/lustre/scratch114/projects/crohns/somatic_ibd_p1/ABC/R_packages_farm4/"
+  library(crayon, lib.loc=lib_location)
+  library(backports, lib.loc=lib_location)
+  library(vctrs, lib.loc=lib_location)
   library(data.tree, lib.loc=lib_location)
   library(ape, lib.loc=lib_location)
   #library(phytools, lib.loc=lib_location)
   library(ggtree, lib.loc=lib_location)
+  .libPaths( c(lib_location, .libPaths()) )
 } else {
   ## Running the script locally - Testing
   library(data.tree)

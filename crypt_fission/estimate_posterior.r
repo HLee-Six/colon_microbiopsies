@@ -13,7 +13,7 @@ library(abc)
 library(cowplot)
 
 early_life_limit <- "4"
-batches <- c("lt_0.05", "gt_0.05_lt_0.1", "gt_0.1_lt_0.15","gt_0.15_lt_0.2")
+batches <- c("lt_0.0125","lt_0.05", "gt_0.05_lt_0.1", "gt_0.1_lt_0.15","gt_0.15_lt_0.2","gt_0.2_lt_0.25")
 observed <- read.table(paste("/Users/so11/phd/so11_nfs/somatic_ibd_p1/ABC/normal_fission_rate/observed_event_counts_excl", early_life_limit, "yr.txt", sep=""), h=T)
 observed_m <- as.matrix(observed[, c(1:8)])
 obs_sumStats <- apply(observed_m, 2, sum)
@@ -78,9 +78,9 @@ hist(test_ridge$adj.values, xlim=c(1/80, 0.2))
 hist(test_neural$adj.values, xlim=c(1/80, 0.2))
 
 
-p1 <- ggplot(data.frame(sim_cfr), aes(x=sim_cfr)) + geom_histogram() + xlim(1/80,0.2) + labs(x="", y="Frequency")
-p2 <- ggplot(data.frame(test_reject$unadj.values), aes(x=test_reject.unadj.values)) + geom_histogram() + xlim(1/80,0.2) + labs(x="", y="Frequency")
-p3 <- ggplot(data.frame(test_neural$adj.values), aes(x=test_neural.adj.values)) + geom_histogram() + xlim(1/80,0.2) + labs(x="", y="Frequency")
+p1 <- ggplot(data.frame(sim_cfr), aes(x=sim_cfr)) + geom_histogram() + xlim(0,0.25) + labs(x="", y="Frequency")
+p2 <- ggplot(data.frame(test_reject$unadj.values), aes(x=test_reject.unadj.values)) + geom_histogram() + xlim(0,0.25) + labs(x="", y="Frequency")
+p3 <- ggplot(data.frame(test_neural$adj.values), aes(x=test_neural.adj.values)) + geom_histogram() + xlim(0,0.25) + labs(x="", y="Frequency")
 
 plot_grid(p1, p2, p3, nrow=3, labels="AUTO")
 
@@ -90,8 +90,8 @@ x$id <- sim_id
 
 y <- data.frame(Reject=test_reject$unadj.values, LocLin=test_loclinear$adj.values, Ridge=test_ridge$adj.values, NeuralN=test_neural$adj.values)
 
-write.table(x, file="/Users/so11/phd/normal_crypt_fission/sim_sumStats_excl4yr.txt", row.names = F, quote = F)
-write.table(y, file="/Users/so11/phd/normal_crypt_fission/cfr_accepted_sims_excl4yr.txt", row.names=F, quote = F)
-write.table(sim_cfr, file="/Users/so11/phd/normal_crypt_fission/prior_used.txt", row.names = F, quote=F, col.names = F)
+write.table(x, file="/Users/so11/phd/normal_crypt_fission/sim_sumStats_excl4yr_July_Upd.txt", row.names = F, quote = F)
+write.table(y, file="/Users/so11/phd/normal_crypt_fission/cfr_accepted_sims_excl4yr_July_Upd.txt", row.names=F, quote = F)
+write.table(sim_cfr, file="/Users/so11/phd/normal_crypt_fission/prior_used_July_Upd.txt", row.names = F, quote=F, col.names = F)
 
 
